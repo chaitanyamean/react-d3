@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
+import ChartWrapper from './ChartWrapper';
+import ProgressArc from './ProgressArc';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+  class App extends Component {
+    constructor(props) {
+      super(props);
+      this.state = {percentComplete: 0.3};
+      this.togglePercent = this.togglePercent.bind(this);
+    }
+   togglePercent() {
+     const percentage = this.state.percentComplete === 0.7 ? 0.3 : 0.7;
+     this.setState({percentComplete: percentage});
+   }
+   render() {
+    console.log(this.state.percentComplete);  
+    return (
+      <ProgressArc
+      percentComplete={this.state.percentComplete}
+          
+      />
+    );
+    }
+  }
 
 export default App;
