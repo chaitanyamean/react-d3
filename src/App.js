@@ -16,10 +16,12 @@ import ProgressArc from './ProgressArc';
    render() {
     console.log(this.state.percentComplete);  
     return (
-      <ProgressArc
-      percentComplete={this.state.percentComplete}
+      // <ProgressArc
+      // percentComplete={this.state.percentComplete}
           
-      />
+      // />d
+      
+      <ChartWrapper />
     );
     }
   }
