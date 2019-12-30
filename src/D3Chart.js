@@ -13,25 +13,34 @@ export default class D3Charts {
             y: (dims.height / 2 + 5)
         };
 
-        const data = [{
-                name: 'rent',
-                cost: 500
+        const data = [
+            {
+                name: 'New Internal communication',
+                cost: 800
             },
             {
-                name: 'bills',
+                name: 'Donem ullac niranad',
                 cost: 300
             },
             {
-                name: 'gaming',
+                name: 'Donem ullac niranaas',
                 cost: 200
             },
             {
-                name: 'petrol',
+                name: 'Donem ullac niranaddea',
                 cost: 500
             },
             {
-                name: 'diesel',
-                cost: 700
+                name: 'Donem ullac niranafre',
+                cost: 500
+            },
+            {
+                name: 'Donem ullac niranadsdc',
+                cost: 400
+            },
+            {
+                name: 'Donem ullac niranacdf',
+                cost: 200
             }
         ]
 
@@ -41,30 +50,14 @@ export default class D3Charts {
         const svg = d3.select(element)
             .append('svg')
             .attr('width', dims.width + 150)
-            .attr('height', dims.height + 150)
+            .attr('height', dims.height + 200)
 
         const graph = svg.append('g')
             .attr('transform', `translate(${cent.x}, ${cent.y})`);
 
         const pie = d3.pie().sort(null).value(d => d.cost);
 
-        const angles = pie([{
-                name: 'rent',
-                cost: 500
-            },
-            {
-                name: 'bills',
-                cost: 300
-            },
-            {
-                name: 'gaming',
-                cost: 200
-            },
-            {
-                name: 'petrol',
-                cost: 500
-            }
-        ])
+   
 
         const color = d3.scaleOrdinal(d3['schemeSet3']);
 
@@ -76,7 +69,7 @@ export default class D3Charts {
             .data(data.map(d => d.name))
             .enter()
             .append("circle")
-            .attr("cx", 100)
+            .attr("cx", 10)
             .attr("cy", function (d, i) {
                 return 10 + i * 25
             }) // 100 is where the first dot appears. 25 is the distance between dots
@@ -89,13 +82,28 @@ export default class D3Charts {
             .data(data.map(d => d.name))
             .enter()
             .append("text")
-            .attr("x", 120)
+            .attr("x", 40)
             .attr("y", function (d, i) {
                 return 10 + i * 25
             }) // 100 is where the first dot appears. 25 is the distance between dots
-            .style("fill", function (d) {
-                return color(d)
+            
+            .style("fill",'black')
+
+            .text(function (d) {
+                return d
             })
+            .attr("text-anchor", "left")
+            .style("alignment-baseline", "middle")
+
+            legendBrand.selectAll("scorevalue")
+            .data(data.map(d => d.cost))
+            .enter()
+            .append("text")
+            .attr("x", 260)
+            .attr("y", function (d, i) {
+                return 10 + i * 25
+            }) // 100 is where the first dot appears. 25 is the distance between dots
+            .style("fill",'black')
             .text(function (d) {
                 return d
             })
@@ -108,9 +116,20 @@ export default class D3Charts {
         // Middle text
         middleText.append("text")
             .attr("text-anchor", "middle")
-            .attr("x", 120)
-            .attr("y", 120)
-            .text("$ 2222");
+            .attr("x", 130)
+            .attr("y", 140)
+            .attr("font-size", 40)
+            .text("65");
+
+            const middleTextOpenCases = svg.append('g')
+            .attr('transform', `translate(${dims.width/2 - 125}, ${dims.height /2 - 125})`);
+        // Middle text
+        middleTextOpenCases.append("text")
+            .attr("text-anchor", "middle")
+            .attr("x", 130)
+            .attr("y", 170)
+            .attr("font-size", 20)
+            .text("Open");
 
         // const legend = d3.legendColor()
         //         .shape('circle')

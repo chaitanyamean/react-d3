@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import './App.css';
 import ChartWrapper from './ChartWrapper';
 import ProgressArc from './ProgressArc';
+import ChartView from './ChartView';
+
 
   class App extends Component {
     constructor(props) {
@@ -22,6 +24,10 @@ import ProgressArc from './ProgressArc';
       // />d
       
       <ChartWrapper />
+
+      // <ChartView />
+
+      // <DonutWithOutPie />
     );
     }
   }
